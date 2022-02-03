@@ -1,11 +1,33 @@
+import { useState } from "react";
+import * as Fonts from "expo-font";
+import AppLoading from "expo-app-loading";
 import { StyleSheet, Text, View } from "react-native";
+import MealsNavigation from "./src/navigation/MealsNavigation";
+import { enableScreens } from "react-native-screens";
+
+enableScreens();
+
+const fetchFonts = () => {
+  return Fonts.loadAsync({
+    lexendDeca: require("./assets/fonts/LexendDeca-Regular.ttf"),
+    lexendDecaBold: require("./assets/fonts/LexendDeca-Bold.ttf"),
+  });
+};
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+  const [isFontLoaded, setIsFontLoaded] = useState(false);
+
+  if (!isFontLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setIsFontLoaded(true)}
+        onError={console.warn}
+      />
+    );
+  }
+
+  return <MealsNavigation />;
 }
 
 const styles = StyleSheet.create({});
