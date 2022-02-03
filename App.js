@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as Fonts from "expo-font";
 import AppLoading from "expo-app-loading";
 import { StyleSheet, Text, View } from "react-native";
-import MealsNavigation from "./src/navigation/MealsNavigation";
+import MealsStackNavigation from "./src/navigation/MealsNavigation";
 import { enableScreens } from "react-native-screens";
 
 enableScreens();
@@ -27,7 +27,7 @@ export default function App() {
     );
   }
 
-  return <MealsNavigation />;
+  return <MealsStackNavigation />;
 }
 
 const styles = StyleSheet.create({});
