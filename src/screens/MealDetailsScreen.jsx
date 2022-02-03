@@ -1,16 +1,38 @@
 import React from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { MEALS } from "../data/dummyData";
+import { View, Text, Button, StyleSheet } from "react-native";
+import CustomHeaderButton from "../components/CustomHeaderButton";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
-const MealDetailsScreen = ({ navigation }) => {
+const MealDetailScreen = ({ navigation }) => {
+  const mealId = navigation.getParam("mealId");
+
+  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
   return (
     <View style={styles.screen}>
-      <Text>The Meal Details Screen</Text>
+      <Text>{selectedMeal.title}</Text>
       <Button
-        title="Category Meals"
-        onPress={() => navigation.navigate("CategoryMealsScreen")}
+        title="Go Back to Categories"
+        onPress={() => {
+          navigation.popToTop();
+        }}
       />
     </View>
   );
+};
+
+MealDetailScreen.navigationOptions = (navigationData) => {
+  const mealId = navigationData.navigation.getParam("mealId");
+  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+  return {
+    headerTitle: selectedMeal.title,
+    headerRight: () => {
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item title="Favorite" iconName="ios-star-outline" />
+      </HeaderButtons>;
+    },
+  };
 };
 
 const styles = StyleSheet.create({
@@ -21,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MealDetailsScreen;
+export default MealDetailScreen;
