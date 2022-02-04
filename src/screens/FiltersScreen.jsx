@@ -1,10 +1,12 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
+import CustomHeaderButton from "../components/CustomHeaderButton";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
-const FilterScreen = () => {
+const FiltersScreen = () => {
   return (
     <View style={styles.screen}>
-      <Text>The Categories Screen</Text>
+      <Text>The Filters Screen</Text>
     </View>
   );
 };
@@ -17,4 +19,21 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FilterScreen;
+FiltersScreen.navigationOptions = (navigationData) => {
+  return {
+    headerTitle: "Filters",
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item
+          title="Menu"
+          iconName="ios-menu"
+          onPress={() => {
+            navigationData.navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    ),
+  };
+};
+
+export default FiltersScreen;
