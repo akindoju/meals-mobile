@@ -1,13 +1,12 @@
 import React from "react";
-import { CATEGORIES, MEALS } from "../data/dummyData";
 import {
   Text,
   View,
   StyleSheet,
-  FlatList,
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
+import DefaultText from "../components/DefaultText";
 import { Fonts } from "../constants/fonts";
 
 const MealItem = ({
@@ -36,9 +35,9 @@ const MealItem = ({
             </ImageBackground>
           </View>
           <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
-            <Text>{duration}m</Text>
-            <Text>{complexity.toUpperCase()}</Text>
-            <Text>{affordability.toUpperCase()}</Text>
+            <DefaultText>{duration}m</DefaultText>
+            <DefaultText>{complexity.toUpperCase()}</DefaultText>
+            <DefaultText>{affordability.toUpperCase()}</DefaultText>
           </View>
         </View>
       </TouchableOpacity>
